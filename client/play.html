@@ -1,0 +1,122 @@
+<template name="play">
+  <a class="btn" id="newGame">
+    Create Game
+  </a>
+
+  <table class="striped">
+    <thead>
+      <tr>
+        <th>Game ID</th>
+        <th>Teams</th>
+        <th>Players</th>
+        <th>Ready</th>
+      </tr>
+    </thead>
+    <tbody>
+    {{#each games}}
+      <tr>
+        <td><a class="gameId">{{_id}}</a></td>
+        <td>{{teams.length}}</td>
+        <td>{{playerCount}}</td>
+        <td>{{#if isReady}}Hell Yeah!{{else}}Erm. Not Yet{{/if}}</td>
+      </tr>
+    {{/each}}
+    </tbody>
+  </table>
+  
+  {{#with selectedGame}}
+  <div class="row">
+    <div class="col s12">
+      <div class="card blue-grey">
+        <div class="card-content white-text">
+          <span class="card-title">Selected Game</span>
+          <p>{{_id}}</p>
+        </div>
+        <div class="card-action">
+          <a id="deselectGame">Deselect</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="input-field col s11">
+      <input placeholder="Team Name" id="teamName" type="text" class="validate">
+      <label for="teamName">Team Name</label>
+    </div>
+    <div class="input-field col s1">
+      <button type="button" class="btn btn-default" id="addTeam">
+        <i class="mdi-social-group-add"></i>
+      </button>
+    </div>
+  </div>
+     
+  <table class="striped">
+    <thead>
+      <tr>
+        <th>Team</th>
+        <th>Players</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each teams}}
+      <tr>
+        <td><a class="teamId">{{name}}</a></td>
+        <td>{{players.length}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+    {{#with selectedTeam}}
+    <div class="row">
+    <div class="col s12">
+      <div class="card blue-grey">
+        <div class="card-content white-text">
+          <span class="card-title">Selected Team</span>
+          <p>{{name}}</p>
+        </div>
+        <div class="card-action">
+          <a id="deselectTeam">Deselect</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+    <div class="row">
+    <div class="input-field col s4">
+      <input placeholder="Given Name" id="givenName" type="text" class="validate">
+      <label for="givenName">Given Name</label>
+    </div>
+    <div class="input-field col s4">
+      <input placeholder="Family Name" id="familyName" type="text" class="validate">
+      <label for="familyName">Family Name</label>
+    </div>
+    <div class="input-field col s3">
+      <input type="checkbox" id="familyNameFirst">
+      <label for="familyNameFirst">Family Name First</label>
+    </div>
+    <div class="input-field col s1">
+      <button type="button" class="btn btn-default" id="addPlayer">
+        <i class="mdi-social-person-add"></i>
+      </button>
+    </div>
+  </div>
+     
+    <table class="striped">
+    <thead>
+      <tr>
+        <th>Player Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each players}}
+      <tr>
+        <td>{{getFullName}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+    {{/with}}
+  {{/with}}  
+</template>
